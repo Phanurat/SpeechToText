@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Speech-to-Text</title>
+</head>
+<body>
+  <button id="record-btn">กดเพื่อบันทึกเสียง 3 วินาที</button>
+  <p id="result"></p>
+
+  <script>
+    // เมื่อคลิกปุ่ม "record-btn"
+    document.getElementById('record-btn').addEventListener('click', function() {
+      // ส่งคำขอไปยังเว็บแอปพลิเคชันสำหรับการแปลงเสียงเป็นข้อความ
+      fetch('/recognize').then(function(response) {
+        return response.text();
+      }).then(function(result) {
+        // แสดงผลลัพธ์ที่ได้ในตำแหน่งที่มี id เป็น "result"
+        document.getElementById('result').textContent = result;
+      }).catch(function(error) {
+        console.log('เกิดข้อผิดพลาด:', error);
+      });
+    });
+  </script>
+</body>
+</html>
