@@ -11,6 +11,13 @@ pip install PyAudio-0.2.11-cp311-cp311-win_amd64.whl
 #Import speech
 import speech_recognition as sr
 
+#import pip install fuzzywuzzy
+pip install fuzzywuzzy
+
+
+#import openai
+openai.api_key = "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"
+
 #import pyaudio
 import pyaudio
 
@@ -48,6 +55,13 @@ with mic as source:
         # ใช้ Google Speech Recognition API แปลงเสียงเป็นข้อความภาษาไทย
         text = recog.recognize_google(audio, language='th')
         print("ข้อความที่ได้:", text)
+
+
+        # บันทึกข้อความลงในไฟล์ (ใช้ utf-8 เพื่อรองรับค่ายูนิโค้ด)
+            with open('speech_with_gpt.txt', 'a', encoding='utf-8') as file:
+                file.write("คำถาม: " + text + "\n")
+                file.write("ตอบ: " + answer + "\n")
+                
     except sr.UnknownValueError:
         print("ไม่สามารถรับรู้เสียง")
     except sr.RequestError as e:
