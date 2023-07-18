@@ -14,7 +14,7 @@ with mic as source:
 
     try:
         # ใช้ Google Speech Recognition API แปลงเสียงเป็นข้อความภาษาไทย
-        text = recog.recognize_google(audio, language='th')
+        text = '"' + recog.recognize_google(audio, language='th') + '"'
         print("ข้อความที่ได้:", text)
 
         #เวลาบันทึกในบัจจุบัน
